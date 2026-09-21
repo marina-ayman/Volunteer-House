@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بيت التطوع - جامعة أسوان</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', 'Poppins', 'Segoe UI', sans-serif;
+  }
+
+  html, body {
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+    padding: 30px 15px;
+
+    /* ===== الخلفية بالصورة الثابتة ===== */
+    background-image: url('/3.jpeg'); /* ← حطي اسم صورتك هنا */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* ← الصورة ثابتة وقت السكرول */
+  }
+
+  /* طبقة بيضاء شفافة فوق الصورة عشان النص يبان */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(116, 104, 104, 0.297);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* نجوم خفيفة فوق الطبقة البيضاء */
+  .stars {
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, rgba(255,140,60,0.35), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(123,47,247,0.3), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(0,198,255,0.35), transparent),
+      radial-gradient(2px 2px at 130px 80px, rgba(255,46,147,0.3), transparent),
+      radial-gradient(1px 1px at 160px 120px, rgba(0,255,163,0.35), transparent);
+    background-size: 200px 200px;
+    animation: twinkle 6s linear infinite;
+    opacity: 0.6;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ===== المحتوى ===== */
+  .container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 35px 25px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(150, 120, 200, 0.25);
+    animation: fadeUp 1s ease;
+    max-width: 480px;
+    width: 100%;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== الشعارات ===== */
+  .logos-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 12px;
+  }
+
+  .logos-row img {
+    max-height: 90px;
+    width: auto;
+    object-fit: contain;
+    animation: logoFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 6px 14px rgba(123, 47, 247, 0.3));
+    border-radius: 12px;
+  }
+
+  .logos-row img:last-child { animation-delay: -2s; }
+
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* ===== العنوان ===== */
+  h1 {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 8px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #7b2ff7, #00c6ff, #ff2e93, #00ffa3, #7b2ff7);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 4s linear infinite;
+  }
+
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+
+  p.subtitle {
+    color: #7a7a8c;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  /* ===== السهم الطالع ===== */
+  .arrow-up-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    height: 45px;
+    position: relative;
+  }
+
+  .arrow-up {
+    font-size: 2.2rem;
+    color: #7b2ff7;
+    animation: arrowUpAnim 1.8s ease-in-out infinite;
+    filter: drop-shadow(0 4px 12px rgba(123, 47, 247, 0.5));
+    position: relative;
+  }
+
+  .arrow-up-wrap::before,
+  .arrow-up-wrap::after {
+    content: '↑';
+    position: absolute;
+    bottom: 0;
+    font-size: 1.2rem;
+    color: #ff2e93;
+    opacity: 0;
+    animation: riseUp 2.4s ease-in infinite;
+  }
+
+  .arrow-up-wrap::before { left: 38%; animation-delay: 0.6s; }
+  .arrow-up-wrap::after  { right: 38%; animation-delay: 1.4s; }
+
+  @keyframes arrowUpAnim {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-14px) scale(1.15); }
+  }
+
+  @keyframes riseUp {
+    0% { opacity: 0; transform: translateY(0) scale(0.8); }
+    30% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-45px) scale(1.3); }
+  }
+
+  /* ===== الأزرار ===== */
+  .btn-wrapper {
+    position: relative;
+    display: block;
+    margin-bottom: 18px;
+  }
+
+  .btn {
+    --border-radius: 18px;
+    --padding: 4px;
+    --transition: 0.4s;
+    --highlight-color-hue: 210deg;
+
+    user-select: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.8em 1em 0.8em 1.2em;
+    font-family: "Cairo", "Poppins", "Segoe UI", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: visible;
+    border: solid 1px #fff2;
+    border-radius: var(--border-radius);
+
+    box-shadow:
+      inset 0px 1px 1px rgba(255, 255, 255, 0.2),
+      inset 0px 2px 2px rgba(255, 255, 255, 0.15),
+      inset 0px 4px 4px rgba(255, 255, 255, 0.1),
+      inset 0px 8px 8px rgba(255, 255, 255, 0.05),
+      inset 0px 16px 16px rgba(255, 255, 255, 0.05),
+      0px -1px 1px rgba(0, 0, 0, 0.02),
+      0px -2px 2px rgba(0, 0, 0, 0.03),
+      0px -4px 4px rgba(0, 0, 0, 0.05),
+      0px -8px 8px rgba(0, 0, 0, 0.06),
+      0px -16px 16px rgba(0, 0, 0, 0.08);
+
+    transition: box-shadow var(--transition), border var(--transition),
+      background-color var(--transition), transform var(--transition);
+  }
+
+  .btn::before {
+    content: "";
+    position: absolute;
+    top: calc(0px - var(--padding));
+    left: calc(0px - var(--padding));
+    width: calc(100% + var(--padding) * 2);
+    height: calc(100% + var(--padding) * 2);
+    border-radius: calc(var(--border-radius) + var(--padding));
+    pointer-events: none;
+    background-image: linear-gradient(0deg, #0004, #000a);
+    z-index: -1;
+    transition: box-shadow var(--transition), filter var(--transition);
+    box-shadow: 0 -8px 8px -6px #0000 inset, 0 -16px 16px -8px #00000000 inset,
+      1px 1px 1px #fff2, 2px 2px 2px #fff1, -1px -1px 1px #0002,
+      -2px -2px 2px #0001;
+  }
+
+  .btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image: linear-gradient(
+      0deg,
+      #fff,
+      hsl(var(--highlight-color-hue), 100%, 70%),
+      hsla(var(--highlight-color-hue), 100%, 70%, 50%),
+      8%,
+      transparent
+    );
+    background-position: 0 0;
+    opacity: 0;
+    transition: opacity var(--transition), filter var(--transition);
+  }
+
+  .btn-text {
+    flex: 1;
+    text-align: right;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    transition: color var(--transition), text-shadow var(--transition);
+    animation: textPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes textPulse {
+    0%, 100% {
+      text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+      opacity: 0.9;
+    }
+    50% {
+      text-shadow: 0 0 8px rgba(255,255,255,0.7), 0 1px 2px rgba(0,0,0,0.25);
+      opacity: 1;
+    }
+  }
+
+  .btn-svg {
+    flex-shrink: 0;
+    height: 24px;
+    width: 24px;
+    margin-left: 0.7rem;
+    fill: #fff;
+    animation: flicker 2s linear infinite;
+    animation-delay: 0.5s;
+    filter: drop-shadow(0 0 2px #fff9);
+    transition: fill var(--transition), filter var(--transition),
+      opacity var(--transition), transform var(--transition);
+  }
+
+  @keyframes flicker {
+    50% { opacity: 0.4; }
+  }
+
+  .btn-arrow {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.75);
+    transition: transform 0.3s ease, color 0.3s ease;
+    margin-right: 0.3rem;
+  }
+
+  .btn:hover {
+    border: solid 1px hsla(var(--highlight-color-hue), 100%, 80%, 50%);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .btn:hover::before {
+    box-shadow: 0 -8px 8px -6px #fffa inset,
+      0 -16px 16px -8px hsla(var(--highlight-color-hue), 100%, 70%, 30%) inset,
+      1px 1px 1px #fff2, 2px 2px 2px #fff1, -1px -1px 1px #0002,
+      -2px -2px 2px #0001;
+  }
+
+  .btn:hover::after {
+    opacity: 1;
+    mask-image: linear-gradient(0deg, #fff, transparent);
+    animation: shineHover 1.2s ease-in-out infinite;
+  }
+
+  @keyframes shineHover {
+    0%, 100% { filter: brightness(100%); }
+    50% { filter: brightness(160%); }
+  }
+
+  .btn:hover .btn-svg {
+    transform: scale(1.15) rotate(-8deg);
+    filter: drop-shadow(0 0 5px hsl(var(--highlight-color-hue), 100%, 70%));
+    animation: none;
+  }
+
+  .btn:hover .btn-text {
+    animation: none;
+    text-shadow: 0 0 10px hsla(var(--highlight-color-hue), 100%, 85%, 0.9);
+  }
+
+  .btn:hover .btn-arrow {
+    transform: translateX(-6px);
+    color: #fff;
+  }
+
+  .btn:active {
+    border: solid 1px hsla(var(--highlight-color-hue), 100%, 80%, 70%);
+    transform: scale(0.97);
+  }
+
+  .btn:active::after {
+    opacity: 1;
+    mask-image: linear-gradient(0deg, #fff, transparent);
+    filter: brightness(200%);
+  }
+
+  .btn-facebook {
+    background: linear-gradient(135deg, #1877f2, #0a4fa8);
+    --highlight-color-hue: 215deg;
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.35),
+      inset 0px 1px 1px rgba(255, 255, 255, 0.2),
+      inset 0px 2px 2px rgba(255, 255, 255, 0.15);
+  }
+
+  .btn-form {
+    background: linear-gradient(135deg, #7b2ff7, #ff2e93);
+    --highlight-color-hue: 290deg;
+    box-shadow: 0 8px 25px rgba(123, 47, 247, 0.35),
+      inset 0px 1px 1px rgba(255, 255, 255, 0.2),
+      inset 0px 2px 2px rgba(255, 255, 255, 0.15);
+  }
+
+  .btn-wrapper:nth-child(1) { animation: slideIn 0.8s ease 0.3s both; }
+  .btn-wrapper:nth-child(2) { animation: slideIn 0.8s ease 0.5s both; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  footer {
+    margin-top: 22px;
+    color: #9aa8b8;
+    font-size: 0.78rem;
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1rem; }
+    .logos-row img { max-height: 65px; }
+    .btn-text { font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="stars"></div>
+
+  <div class="container">
+
+    <div class="logos-row">
+      <img src="/1.jfif" alt="صندوق مكافحة وعلاج الإدمان والتعاطي">
+      <img src="/2.jpeg" alt="جامعة أسوان - بيت التطوع">
+    </div>
+
+    <h1>بيت التطوع<br>صندوق مكافحة وعلاج الإدمان والتعاطي<br>جامعة أسوان</h1>
+    <p class="subtitle">اضغط على الرابط للانتقال</p>
+
+    <div class="arrow-up-wrap">
+      <span class="arrow-up">↑</span>
+    </div>
+
+    <div class="btn-wrapper">
+      <a class="btn btn-facebook" href="https://www.facebook.com/share/1b2JHkpHou/" target="_blank" rel="noopener">
+        <span class="btn-svg">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/>
+          </svg>
+        </span>
+        <span class="btn-text">صفحتنا على فيسبوك</span>
+        <span class="btn-arrow">←</span>
+      </a>
+    </div>
+
+    <div class="btn-wrapper">
+      <a class="btn btn-form" href="https://forms.gle/8ommKcn8Eu4pM7fv5" target="_blank" rel="noopener">
+        <span class="btn-svg">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+          </svg>
+        </span>
+        <span class="btn-text">سجّل معنا الآن</span>
+        <span class="btn-arrow">←</span>
+      </a>
+    </div>
+
+    <footer>© 2025 بيت التطوع - جامعة أسوان</footer>
+  </div>
+
+</body>
+</html>
