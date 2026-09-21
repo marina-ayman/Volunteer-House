@@ -125,11 +125,11 @@
     transform: scale(0.97);
   }
 
-  .btn-slide.facebook:hover {
+  .btn-slide.facebook:active {
     background: linear-gradient(-135deg, #1877f2 0%, #0a4fa8 100%);
   }
 
-  .btn-slide.form:hover {
+  .btn-slide.form:active {
     background: linear-gradient(-135deg, #7b2ff7 0%, #ff2e93 100%);
   }
 
@@ -155,7 +155,7 @@
   .btn-slide.facebook span.circle { color: #1877f2; }
   .btn-slide.form span.circle { color: #7b2ff7; }
 
-  .btn-slide:hover span.circle {
+  .btn-slide:active span.circle {
     left: 100%;
     margin-left: -50px;
   }
@@ -177,14 +177,14 @@
     text-overflow: ellipsis;
   }
 
-  .btn-slide span.title-hover {
+  .btn-slide span.title-active {
     opacity: 0;
     right: 50px;
     text-align: center;
   }
 
-  .btn-slide:hover span.title { opacity: 0; }
-  .btn-slide:hover span.title-hover { opacity: 1; right: 85px; }
+  .btn-slide:active span.title { opacity: 0; }
+  .btn-slide:active span.title-active { opacity: 1; right: 85px; }
 
   /* ===== Footer ===== */
   footer {
@@ -201,9 +201,9 @@
     .btn-slide { width: 250px; height: 50px; line-height: 50px; }
     .btn-slide span.circle { height: 40px; width: 40px; font-size: 16px; }
     .btn-slide span.title { font-size: 15px; right: 75px; left: 55px; }
-    .btn-slide span.title-hover { right: 45px; }
-    .btn-slide:hover span.title-hover { right: 75px; }
-    .btn-slide:hover span.circle { margin-left: -45px; }
+    .btn-slide span.title-active { right: 45px; }
+    .btn-slide:active span.title-active { right: 75px; }
+    .btn-slide:active span.circle { margin-left: -45px; }
     .logos-row img { max-height: 65px; }
   }
 </style>
@@ -236,7 +236,7 @@
           <i class="fa-brands fa-facebook-f"></i>
         </span>
         <span class="title">صفحتنا على فيسبوك</span>
-        <span class="title title-hover">تابعنا الآن</span>
+        <span class="title title-active">تابعنا الآن</span>
       </a>
     </div>
 
@@ -247,7 +247,7 @@
           <i class="fa-solid fa-file-lines"></i>
         </span>
         <span class="title">سجّل معنا الآن</span>
-        <span class="title title-hover">املأ الفورم</span>
+        <span class="title title-active">املأ الفورم</span>
       </a>
     </div>
 
